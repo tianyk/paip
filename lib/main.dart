@@ -12,99 +12,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const Directionality(
-      textDirection: TextDirection.ltr,
-      child: MyHomePage(title: 'Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    double devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
-
     return Container(
       color: Colors.white,
-      child: DefaultTextStyle(
-        style: const TextStyle(color: Colors.black),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              widget.title,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('计数:', style: TextStyle(color: Colors.black)),
-                SizedBox(
-                  width: 48.0, // 假设每个汉字宽度约24.0
-                  child: Text(
-                    '$_counter',
-                    style: const TextStyle(color: Colors.black),
-                  ),
-                ),
-              ],
-            ),
-            // 写一个按钮
-            MyButton(label: '增加', onPressed: _incrementCounter),
-            Text(
-              'devicePixelRatio: $devicePixelRatio',
-            ),
-            const ImageSection(image: 'assets/images/lake.jpg'),
-          ],
+      child: const Directionality(
+        textDirection: TextDirection.ltr,
+        child: DefaultTextStyle(
+          style: TextStyle(color: Colors.black),
+          child: Column(
+            children: [
+              ImageSection(image: 'assets/images/lake.jpg'),
+              TitleSection(),
+            ],
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class MyButton extends StatelessWidget {
-  const MyButton({super.key, required this.label, this.onPressed});
-
-  final String label;
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        color: Colors.blue,
-        padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
-        child: Text(label, style: const TextStyle(color: Colors.white)),
       ),
     );
   }
@@ -117,6 +37,38 @@ class ImageSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(image, width: 800, height: 600, fit: BoxFit.cover);
+    return Image.asset(image, width: 800, height: 280, fit: BoxFit.cover);
+  }
+}
+
+class TitleSection extends StatelessWidget {
+  const TitleSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "小明的餐厅",
+                style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w600),
+              ),
+              Text("一家好吃的餐厅", style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400)),
+            ],
+          ),
+          Row(
+            children: [
+              Icon(Icons.star, color: Colors.red),
+              Text("41"),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
