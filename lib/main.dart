@@ -19,12 +19,14 @@ class MyApp extends StatelessWidget {
       color: Colors.white,
       child: const Directionality(
         textDirection: TextDirection.ltr,
-        child: SlideableWidgets(
-          children: [
-            App1(),
-            App2(),
-          ],
-        ),
+        child: DefaultTextStyle(
+            style: TextStyle(color: Color(0xFF333333)),
+            child: SlideableWidgets(
+              children: [
+                App1(),
+                App2(),
+              ],
+            )),
       ),
     );
   }

@@ -5,19 +5,10 @@ class App2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: const Directionality(
-          textDirection: TextDirection.ltr,
-          child: DefaultTextStyle(
-            style: TextStyle(color: Colors.black),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('App2'),
-              ],
-            ),
-          )),
+    return ListView(
+      children: [
+        ...List.generate(1000, (index) => Text('ListTitle ${index + 1}')),
+      ],
     );
   }
 }

@@ -6,37 +6,28 @@ class App1 extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Directionality(
-        textDirection: TextDirection.ltr,
-        child: DefaultTextStyle(
-          style: const TextStyle(color: Colors.black),
-          child: Column(
-            children: [
-              const ImageSection(image: 'assets/images/lake.jpg'),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(children: [
-                    const TitleSection(),
-                    const ButtonSection(),
-                    Container(
-                      margin: const EdgeInsets.only(top: 16),
-                      child: const TextSection(
-                        text: 'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
-                            'Bernese Alps. Situated 1,578 meters above sea level, it '
-                            'is one of the larger Alpine Lakes. A gondola ride from '
-                            'Kandersteg, followed by a half-hour walk through pastures '
-                            'and pine forest, leads you to the lake, which warms to 20 '
-                            'degrees Celsius in the summer. Activities enjoyed here '
-                            'include rowing, and riding the summer toboggan run.',
-                      ),
-                    ),
-                  ]))
-            ],
-          ),
-        ),
-      ),
+    return Column(
+      children: [
+        const ImageSection(image: 'assets/images/lake.jpg'),
+        Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(children: [
+              const TitleSection(name: '小明的餐厅', address: '长江路一号'),
+              const ButtonSection(),
+              Container(
+                margin: const EdgeInsets.only(top: 16),
+                child: const TextSection(
+                  text: 'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
+                      'Bernese Alps. Situated 1,578 meters above sea level, it '
+                      'is one of the larger Alpine Lakes. A gondola ride from '
+                      'Kandersteg, followed by a half-hour walk through pastures '
+                      'and pine forest, leads you to the lake, which warms to 20 '
+                      'degrees Celsius in the summer. Activities enjoyed here '
+                      'include rowing, and riding the summer toboggan run.',
+                ),
+              ),
+            ]))
+      ],
     );
   }
 }
@@ -48,29 +39,32 @@ class ImageSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(image, width: 800, height: 280, fit: BoxFit.cover);
+    return Image.asset(image, width: 800, height: 240, fit: BoxFit.cover);
   }
 }
 
 class TitleSection extends StatelessWidget {
-  const TitleSection({super.key});
+  const TitleSection({super.key, required this.name, required this.address});
+
+  final String name;
+  final String address;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "小明的餐厅",
-              style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w600),
+              name,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
             ),
-            Text("一家好吃的餐厅", style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400)),
+            Text(address, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
           ],
         ),
-        Row(
+        const Row(
           children: [
             Icon(Icons.star, color: Colors.red),
             Text("41"),
@@ -126,6 +120,6 @@ class TextSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text, style: const TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w400));
+    return Text(text, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400));
   }
 }
