@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 
 import 'app1.dart';
 import 'app2.dart';
+import 'app3.dart';
 import 'slide.dart';
 
 void main() {
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
               children: [
                 App1(),
                 App2(),
+                App3(),
               ],
             )),
       ),

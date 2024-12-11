@@ -24,4 +24,5 @@ flutter:
   uses-material-design: true # 使用Material Design设计风格
 
   assets: # 资源文件
-    - assets/images/lake.jpg
+    - assets/images/
+    - assets/images/fruit/
